@@ -1,0 +1,6 @@
+flask/
+*.pyc
+*.out
+*.log
+*~
+__*

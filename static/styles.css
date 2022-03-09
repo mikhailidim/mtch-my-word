@@ -1,0 +1,197 @@
+:root {
+  --control-count: 7;
+  --result-count: 5;
+  --tile-bg-color: #fff;
+  --tile-text-color: #000;
+  --tile-br-color: #d3d6da;
+  --control-bg-color: #787c7e;
+  --control-text-color: #fff;
+  --tile-bg-green: #6aaa64;
+  --btn-width: 2em;
+  --body-width: 100%;
+  --font-size: 1.2em;
+  --btn-width: 2em;
+  --btn-height: 2.5em;
+  --res-height: 23em;
+}
+
+#header {
+  height: 2em;
+  padding: 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Bevan;
+}
+
+/* #inputs {
+  width: 30em;
+} */
+
+#keyboard {
+  width: 100%;
+  margin-bottom: 1em;
+  text-align: center;
+  padding: 1em 0;
+}
+
+buttons {
+  width: 100%;
+  margin-left: 15%;
+  margin-right: 15%;
+  text-align: center;
+}
+
+button {
+  margin-bottom: 0.3em;
+  margin-right: 0.2em;
+  height: var(--btn-height);
+  width: var(--btn-width);
+}
+
+.inputs {
+  display: flex;
+  /* grid-template-columns: repeat(var(--control-count), 1fr); */
+  grid-gap: 5px;
+  padding: 5px;
+  margin-right: auto;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.letter {
+  width: var(--btn-width);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-size);
+  line-height: var(--btn-height);
+  min-height: var(--btn-height);
+  font-weight: bold;
+  vertical-align: middle;
+  box-sizing: border-box;
+  color: var(--tile-text-color);
+  background-color: var(--tile-bg-color);
+  text-transform: uppercase;
+  user-select: none;
+  border: 2px solid var(--tile-br-color);
+}
+
+.none {
+  background-color: var(--control-bg-color);
+}
+
+.green {
+  color: var(--control-text-color);
+  background-color: var(--tile-bg-green);
+}
+
+.control {
+  width: var(--btn-height);
+  height: var(--webkit-fill-available);
+  display: inline-flex;
+  font-weight: 700;
+  font-size: var(--font-size);
+  box-sizing: border-box;
+  color: var(--tile-text-color);
+  background-color: var(--tile-bg-color);
+  text-transform: uppercase;
+  user-select: none;
+  justify-self: flex-end;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#result {
+  min-height: 10em;
+  max-height: 40em;
+  overflow: auto;
+}
+
+.results {
+  display: flex;
+  grid-template-columns: repeat(var(--result-count), 1fr);
+  grid-gap: 5px;
+  padding: 5px;
+  margin-right: auto;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: var(--btn-height);
+  overflow-y: auto;
+}
+
+body {
+  width: var(--body-width);
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+  min-height: -webkit-fill-available;
+}
+
+html {
+  /* background-color: var(--tile-br-color); */
+  min-height: -webkit-fill-available;
+}
+
+@media screen and (max-device-height >= 600px) {
+  :root {
+    --res-height: 35em;
+  }
+} 
+@media screen and (max-device-height < 600px) {
+    :root {
+      --body-width: 100%;
+    }  
+} 
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+  :root {
+    --btn-width: 3em;
+    --btn-height: 3.5em;
+    --font-size: 1.2em;
+    --res-height: 27em;
+    --body-width: 768px;
+  }
+}
+/* Allow tiles to be smaller on small screens */
+
+@media screen and (max-device-width < 600px) and (orientation: portrait){
+  .letter {
+    line-height: 1em;
+  }
+  :root {
+    --btn-width: 2em;
+    --btn-height: 2.5em;
+    --font-size: 1em;
+    --res-high: 27em; 
+    --body-width: 100%;
+  }
+  button {
+    margin-bottom: 0.3em;
+    margin-right: 0.2em;
+    height: var(--btn-height);
+    width: var(--btn-width);
+  }
+  
+}
+
+@media screen and (orientation: landscape){
+  .letter {
+    line-height: 1em;
+  }
+  :root {
+    --btn-width: 2.5em;
+    --btn-height: 3em;
+    --font-size: 1em;
+    --res-lpad: 4em;
+    --res-high: 9.5em; 
+    --body-width: 100%;
+  }
+}
