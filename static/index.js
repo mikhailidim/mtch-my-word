@@ -4,20 +4,25 @@ var pattern = 5;
 var rLetters = /[a-zA-Z]|[а-яА-Я]/;
 var guessAPI = "/guess/api/v1.0/en/";
 
-function lang_toggle() {
-    if ( $("#en-ru").html() == "en") { 
-        $("#en-ru").html("ru");
-        ru_api(); } else {
-            $("#en-ru").html("en");
-            en_api();
+function toggle_api(event) {
+    switch (typeof event) {
+        case 'object':
+            lang = event.target.innerHTML === "en" ? "ru" : "en";
+            break;
+        case 'string':
+            lang = event;
+            break;
+        default:
+            lang = 'en';
     }
-}
-function ru_api() {
-    guessAPI = "/guess/api/v1.0/ru/";
+    $("#en-ru").html(lang);
+    guessAPI = `/guess/api/v1.0/${lang}/`;
+    kbdSrc = `/static/${lang}_kbd.html`;
     $("#keyboard").children().remove();
-    // document.body.style.setProperty('--btn-width', "1.75rem"); //set
-    $("#keyboard").load("/static/ru_kbd.html", () => {
+    $("<div id='keyboard'></div>").insertAfter($("#results"));
+    $("#keyboard").load(kbdSrc, () => {
         $("button").on("click", btn_click);
+        console.log($("#keyboard").children().length);
     });
     reset_input();
 }
@@ -29,17 +34,7 @@ function btn_click(btn) {
     } else {
         text_input({ "which": code });
     }
-    $("body").trigger("keypress", );
-}
-
-function en_api() {
-    guessAPI = "/guess/api/v1.0/en/";
-    $("#keyboard").children().remove();
-    // document.body.style.setProperty('--btn-width', "2rem");
-    $("#keyboard").load("/static/en_kbd.html", () => {
-        $("button").on("click", btn_click);
-    });
-    reset_input();
+    $("body").trigger("keypress",);
 }
 
 // Handle input
@@ -56,9 +51,10 @@ function update_results(evt, data) {
             //Pretty Print
             $("#results").children().remove();
             if (data.Matches.length > 0) {
-                if (data.Matches.length > 9) {
+                if (data.Matches.length > 6) {
                     $("#results").css("height", "var(--res-height)");
-                    $("#results").css("overflow-y", "auto");
+                    $("#results").css("overflow-y", "overlay");
+
                 } else
                     $("#results").css("height", "auto");
 
@@ -102,7 +98,7 @@ function empty_line(ptr) {
 }
 
 function reset_input() {
-    $("#inputs .letter").each(function(idx, li) {
+    $("#inputs .letter").each(function (idx, li) {
         li.innerHTML = "";
     });
     ifocus = 0;
@@ -153,7 +149,7 @@ function text_input(e) {
 
 function build_mask() {
     let msk = "";
-    $("#inputs .letter").each(function(idx, li) {
+    $("#inputs .letter").each(function (idx, li) {
         msk += li.textContent.toLowerCase();
     });
     return msk;
@@ -187,4 +183,9 @@ function rem_char() {
         // $("hr").width(adjst + 20);
         $("body").trigger("redraw", build_mask());
     }
+}
+
+function pop_help(event){
+       $("#help").toggleClass(["popup","popdown"]);
+
 }

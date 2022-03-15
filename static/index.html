@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
     <title>Match My Word</title>
     <link rel="stylesheet" href="/static/styles.css" />
-    <link href="https://fonts.googleapis.com/css?family=Bevan" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Rowdies" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="/static/index.js" type="text/javascript"></script>
 </head>
 
@@ -18,8 +18,9 @@
             <div id="less" class="control">-</div>
             <div id="more" class="control">+</div>
        </div>
-       <div id="help" class="control">?</div>
+       <div id="hbtn" class="control">?</div>
     </div>
+    <div id="help" class="popdown"></div>    
     <div id="inputs" class="inputs">
         <div class="letter"></div>
         <div class="letter"></div>
@@ -27,21 +28,21 @@
         <div class="letter"></div>
         <div class="letter"></div>
     </div>
-    <div id="results"></div>
-
-    <div id="keyboard"></div>
+    <div id="results"</div>
 </body>
 <script>
-    $("#en-ru").on("click",lang_toggle);
-    $("#keyboard").load("/static/en_kbd.html", () => {
-        $("button").on("click", btn_click);
+    $("#en-ru").click(toggle_api);
+    $("#hbtn,#help").click(function(){
+        $("#help").load("/static/"+$("#en-ru").text()+"_help.html");
+        $("#help").toggleClass(["popup","popdown"]);
     });
-    $(".btn-switch").css("background", "--control-bg-color");
     $(document).keydown(clear_letter);
     $("body").keypress(text_input);
     $("body").on("redraw", update_results);
     $("#more").click(add_char);
     $("#less").click(rem_char);
+    // Load default keyboard
+    toggle_api();
 </script>
 
 </html>

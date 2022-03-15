@@ -1,8 +1,11 @@
 #!flask/bin/python
 from flask import Flask, jsonify, send_from_directory
+from urllib.request import *
 import sys
 import re
 import os
+en_source = 'https://raw.githubusercontent.com/dwyl/english-words/master/words.txt'
+ru_source = 'https://raw.githubusercontent.com/Harrix/Russian-Nouns/main/dist/russian_nouns.txt'
 
 en_words = []
 ru_words = []
@@ -31,17 +34,15 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    #enfs = ocifs.OCIFileSystem("~/.oci/config")
-    f = open('dict/en_words_alpha.txt','r')
-    en_words=f.readlines()
+    blob = urlopen(en_source).read()
+    en_words = blob.decode('utf-8').split('\n')
     app.logger.info(f"Loaded {len(en_words)} English words.")
     app.logger.debug(f"Test word[1]: {en_words[1].strip()}")
-    f.close()
-    f=open('dict/ru_words_alpha.txt','r')
-    ru_words=f.readlines()
+
+    blob = urlopen(ru_source).read()
+    ru_words = blob.decode('utf-8').split('\n')
     app.logger.info(f"Загружено {len(ru_words)} слов.")
     app.logger.debug(f"Тест слово[1]: {ru_words[1].strip()}")
-    f.close()
 
     @app.route('/')
     def serve_index():
