@@ -16,6 +16,7 @@ function toggle_api(event) {
             lang = 'en';
     }
     $("#en-ru").html(lang);
+    // $("#title").html( lang === "en" ? "MATCH MY WORD" : "НАЙДИ МНЕ СЛОВО");
     guessAPI = `/guess/api/v1.0/${lang}/`;
     kbdSrc = `/static/${lang}_kbd.html`;
     $("#keyboard").children().remove();
