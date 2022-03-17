@@ -12,7 +12,7 @@
   --font-size: 1.2em;
   --btn-width: 2em;
   --btn-height: 2.5em;
-  --res-height: 23em;
+  --res-height: 19em;
 }
 
 #header {
@@ -22,12 +22,28 @@
   justify-content: space-between;
   align-items: center;
   font-family: Bevan;
+  border-bottom: 1px solid var(--tile-br-color);
+  margin-bottom: 1em;
 }
 
-/* #inputs {
-  width: 30em;
-} */
-
+.popup {
+  background: var(--tile-bg-color);
+  margin: 0 auto;
+  width: 75%;
+  position: sticky;
+  z-index: 41;
+  top: 1%;
+  padding: 1em 2em;
+  -webkit-box-shadow: 0 0 0.5em rgb(0 0 0 / 40%);
+  -moz-box-shadow: 0 0 .5em rgba(0,0,0,0.4);
+  box-shadow: 0 0 0.5em rgb(0 0 0 / 40%);
+  visibility: visible;
+  display: block;
+}
+.popdown {
+  visibility: hidden;
+  display: none;
+}
 #keyboard {
   width: 100%;
   margin-bottom: 1em;
@@ -70,7 +86,7 @@ button {
   line-height: var(--btn-height);
   min-height: var(--btn-height);
   font-weight: bold;
-  vertical-align: middle;
+  
   box-sizing: border-box;
   color: var(--tile-text-color);
   background-color: var(--tile-bg-color);
@@ -104,13 +120,19 @@ button {
   align-items: center;
   justify-content: center;
   text-align: center;
-  vertical-align: middle;
+  
 }
 
 #result {
   min-height: 10em;
   max-height: 40em;
-  overflow: auto;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+#result::-webkit-scrollbar { 
+  height: 0;
+  width: 0;  
 }
 
 .results {
@@ -124,7 +146,7 @@ button {
   margin-left: auto;
   margin-right: auto;
   min-height: var(--btn-height);
-  overflow-y: auto;
+ 
 }
 
 body {
@@ -137,32 +159,32 @@ body {
 }
 
 html {
-  /* background-color: var(--tile-br-color); */
   min-height: -webkit-fill-available;
 }
 
-@media screen and (max-device-height >= 600px) {
+@media screen and (min-height: 600px) {
   :root {
-    --res-height: 35em;
+    --res-height: 19em;
   }
 } 
-@media screen and (max-device-height < 600px) {
+@media screen and (max-height: 600px) {
     :root {
       --body-width: 100%;
+      --res-height: 9em;
     }  
 } 
-@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+@media screen and (min-width: 1200px) and (max-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
   :root {
     --btn-width: 3em;
     --btn-height: 3.5em;
     --font-size: 1.2em;
-    --res-height: 27em;
+    --res-height: 21em;
     --body-width: 768px;
   }
 }
 /* Allow tiles to be smaller on small screens */
 
-@media screen and (max-device-width < 600px) and (orientation: portrait){
+@media screen and (max-height: 400px) and (orientation: portrait){
   .letter {
     line-height: 1em;
   }
@@ -170,7 +192,7 @@ html {
     --btn-width: 2em;
     --btn-height: 2.5em;
     --font-size: 1em;
-    --res-high: 27em; 
+    --res-height: 9em; 
     --body-width: 100%;
   }
   button {
@@ -182,7 +204,7 @@ html {
   
 }
 
-@media screen and (orientation: landscape){
+/* @media screen and (orientation: landscape){
   .letter {
     line-height: 1em;
   }
@@ -191,7 +213,7 @@ html {
     --btn-height: 3em;
     --font-size: 1em;
     --res-lpad: 4em;
-    --res-high: 9.5em; 
+    --res-height: 9em; 
     --body-width: 100%;
-  }
-}
+  } 
+}*/
