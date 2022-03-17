@@ -50,4 +50,5 @@ waitress-serve --port=5000 wsgi:application
 [Wordle](https://www.nytimes.com/games/wordle) - The overall idea, and UI inspiration. 
 
 [English-Words](https://github.com/dwyl/english-words) - English nouns source.
+
 [Russian-Nouns](https://github.com/Harrix/Russian-Nouns) - Russian nouns repository.
