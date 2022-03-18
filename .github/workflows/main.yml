@@ -24,7 +24,9 @@ jobs:
       # Extract tag version
       - 
         name: Get the tag name
-        run: echo "TAG=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+        run: |
+          _tg=$(grep -q tag <<< ${GITHUB_REF && echo "${GITHUB_REF/\/ref\/tag\/v/}" || echo "latest")
+          echo "TAG=${_tg}" >> $GITHUB_ENV
         
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - 
@@ -57,4 +59,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/match-my-word:latest, ${{ secrets.DOCKER_HUB_USERNAME }}/match-my-word:${{ env.TAG }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/match-my-word:${{ env.TAG }}
