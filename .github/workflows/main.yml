@@ -21,12 +21,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Extract tag version
-      - 
-        name: Get the tag name
-        run: |
-          _tg=$(grep -q tag <<< ${GITHUB_REF} && echo "${GITHUB_REF/\/ref\/tag\/v/}" || echo "latest")
-          echo "TAG=${_tg}" >> $GITHUB_ENV
         
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - 
