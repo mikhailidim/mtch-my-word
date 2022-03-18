@@ -20,7 +20,7 @@ Additional controls are:
 
 
 ### Internet Access
-The latest application version is available on my website - (__TODO__)
+The latest application version is available on my website - https://matchword.mikhailidi.me/
 
 ### Local Container
 
