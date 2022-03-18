@@ -59,4 +59,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/match-my-word:${{ env.TAG }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/match-my-word:latest,${{ steps.meta.outputs.tags }}
