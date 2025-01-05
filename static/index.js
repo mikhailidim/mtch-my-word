@@ -187,6 +187,6 @@ function rem_char() {
 }
 
 function pop_help(event){
-       $("#help").toggleClass(["popup","popdown"]);
+    $("#help").toggleClass(["popup","popdown"]);
 
 }
